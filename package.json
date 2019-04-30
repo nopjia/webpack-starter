@@ -1,0 +1,43 @@
+{
+  "name": "webpack-starter",
+  "version": "1.0.0",
+  "description": "webpack starter project",
+  "author": "Nop Jiarathanakul <nop@iamnop.com>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.5",
+    "browser-sync": "^2.26.5",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^5.2.0",
+    "prettier": "^1.17.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "build": "npm run webpack",
+    "dev": "npm-run-all -p webpack:watch serve prettier:watch eslint:watch",
+    "validate": "npm-run-all -s prettier eslint",
+    "serve": "browser-sync start --config bs-config.js",
+    "webpack": "webpack --mode production",
+    "webpack:watch": "webpack --watch --mode development",
+    "prettier": "prettier --write '**/*.{js,json,md}'",
+    "prettier:watch": "onchange '**/*.{js,json,md}' -e 'node_modules/**' -e 'dist/**' -- prettier --write {{changed}}",
+    "eslint": "eslint --fix --ext .js .",
+    "eslint:watch": "onchange '**/*.js' -e 'node_modules/**' -e 'dist/**' -- eslint --fix {{changed}}",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
